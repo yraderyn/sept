@@ -63,7 +63,7 @@ with open('imenice/reizlaz2.txt', 'r', encoding = 'utf-8') as korpus: #otvara fa
                     #ali koje svakako nisu prefigirane (npr. 'sa', gde 's-' bi se prepoznalo kao prefiks, a '-a' kao rec srpskog jezika)
                     if rec[len(prefiks):] in recnik and len(rec[len(prefiks):]) > 1:
                         uslov = 1
-                    if uslov==0:
+                    if uslov == 0:
                         #DRUGI USLOV - na potencijalnu osnovu se moze dodati drugi prefiks tako da dobijena rec bude leksikalizovana
                         for prefiks2 in listaprefiksa: 
                             if prefiks2 + rec[len(prefiks):] in recnik and prefiks != prefiks2 and len(rec[len(prefiks):]) > 1 and len(rec[len(prefiks2):]) > 1 and alomorf(prefiks2) == True: #treci uslov u if petlji: ne zelimo da se prefiks menja samim sobom.
@@ -98,61 +98,59 @@ with open('imenice/reizlaz2.txt', 'r', encoding = 'utf-8') as korpus: #otvara fa
                                                 if prefiks2 + potencijalni_glagol[len(prefiks):] in listaglagola and prefiks != prefiks2 and len(potencijalni_glagol[len(prefiks):]) > 1 and len(potencijalni_glagol[len(prefiks2):]) > 1 and alomorf(prefiks2) == True:  # treci uslov u if petlji: ne zelimo da se prefiks menja samim sobom. Za cetvrti i peti uslov pogledati liniju 49
                                                     uslov = 32
                                                     break
+                                if uslov == 0:
+                                    if sufiks.startswith('n'):
+                                        osnova_bez_sufiksa = osnova_bez_sufiksa + 'n'
+                                    if osnova_bez_sufiksa.endswith('nut'):
+                                        potencijalni_glagol = osnova_bez_sufiksa + 'i'
+                                        if potencijalni_glagol in listaglagola:
+                                            uslov = 33
+                                    elif osnova_bez_sufiksa.endswith('an'):
+                                        potencijalni_glagol = osnova_bez_sufiksa[:-1] + 'ti'
+                                        if potencijalni_glagol in listaglagola:
+                                            uslov = 33
+                                    elif osnova_bez_sufiksa.endswith('en'):
+                                        osnova_gpt = osnova_bez_sufiksa[:-2]
+                                        uslov = provera_glagola(osnova_gpt)
                                         if uslov == 0:
-                                            if sufiks.startswith('n'):
-                                                osnova_bez_sufiksa = osnova_bez_sufiksa + 'n'
-                                            if osnova_bez_sufiksa.endswith('nut'):
-                                                potencijalni_glagol = osnova_bez_sufiksa + 'i'
+                                            for jotovano in lj_lista:
+                                                if osnova_gpt.endswith(jotovano):
+                                                    osnova_gpt = osnova_gpt[:-2]
+                                                    uslov = provera_glagola(osnova_gpt)
+                                        if uslov == 0:
+                                            if osnova_gpt.endswith('đ'):
+                                                osnova_gpt = osnova_gpt[:-1] + 'd'
+                                                uslov = provera_glagola(osnova_gpt)
+                                        if uslov == 0:
+                                            if osnova_gpt.endswith('ć'):
+                                                osnova_gpt = osnova_gpt[:-1] + 't'
+                                                uslov = provera_glagola(osnova_gpt)
+                                        if uslov == 0:
+                                            if osnova_gpt.endswith('šlj'):
+                                                osnova_gpt = osnova_gpt[:-1] + 'sl'
+                                                uslov = provera_glagola(osnova_gpt)
+                                        if uslov == 0:
+                                            if osnova_gpt.endswith('j'):
+                                                osnova_gpt = osnova_gpt[:-1]
+                                                uslov = provera_glagola(osnova_gpt)
+                                        if uslov == 0:
+                                            if osnova_gpt.endswith('š'):
+                                                osnova_gpt = osnova_gpt[:-1] + 's'
+                                                uslov = provera_glagola(osnova_gpt)
+                                        if uslov == 0:
+                                            if osnova_gpt.endswith('č'):
+                                                osnova_gpt = osnova_gpt[:-1] + 'c'
+                                                uslov = provera_glagola(osnova_gpt)
+                                        if uslov == 0:
+                                            if osnova_gpt.endswith('č'):
+                                                potencijalni_glagol = osnova_gpt[:-1] + 'ći'
                                                 if potencijalni_glagol in listaglagola:
                                                     uslov = 33
-                                            elif osnova_bez_sufiksa.endswith('an'):
-                                                potencijalni_glagol = osnova_bez_sufiksa[:-1] + 'ti'
-                                                if potencijalni_glagol in listaglagola:
-                                                    uslov = 33
-                                            elif osnova_bez_sufiksa.endswith('en'):
-                                                osnova_gpt = osnova_bez_sufiksa[:-2]
-                                                provera_glagola(osnova_gpt)
-                                                if uslov == 0:
-                                                    for jotovano in lj_lista:
-                                                        if osnova_gpt.endswith(jotovano):
-                                                            osnova_gpt = osnova_gpt[:-2]
-                                                            provera_glagola(osnova_gpt)
-                                                if uslov == 0:
-                                                    if osnova_gpt.endswith('đ'):
-                                                        osnova_gpt = osnova_gpt[:-1] + 'd'
-                                                        provera_glagola(osnova_gpt)
-                                                if uslov == 0:
-                                                    if osnova_gpt.endswith('ć'):
-                                                        osnova_gpt = osnova_gpt[:-1] + 't'
-                                                        provera_glagola(osnova_gpt)
-                                                if uslov == 0:
-                                                    if osnova_gpt.endswith('šlj'):
-                                                        osnova_gpt = osnova_gpt[:-1] + 'sl'
-                                                        provera_glagola(osnova_gpt)
-                                                if uslov == 0:
-                                                    if osnova_gpt.endswith('j'):
-                                                        osnova_gpt = osnova_gpt[:-1]
-                                                        provera_glagola(osnova_gpt)
-                                                if uslov == 0:
-                                                    if osnova_gpt.endswith('š'):
-                                                        osnova_gpt = osnova_gpt[:-1] + 's'
-                                                        provera_glagola(osnova_gpt)
-                                                if uslov == 0:
-                                                    if osnova_gpt.endswith('č'):
-                                                        osnova_gpt = osnova_gpt[:-1] + 'c'
-                                                        provera_glagola(osnova_gpt)
-                                                if uslov == 0:
-                                                    if osnova_gpt.endswith('č'):
-                                                        potencijalni_glagol = osnova_gpt[:-1] + 'ći'
-                                                        if potencijalni_glagol in listaglagola:
-                                                            uslov = 33
-                                                            break
-                                    else:
-                                        pass
-                                if uslov!=0:
+                                                    break
+                                if uslov == 0:
+                                    uslov = 3
                                     break
-                                if uslov==0:
-                                    uslov=3
+                                else:
                                     break
                     if uslov == 0:
                         pass
