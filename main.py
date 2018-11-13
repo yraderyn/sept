@@ -1,6 +1,6 @@
 import re
-with open('imenice/reizlaz2.txt', 'r', encoding = 'utf-8') as korpus: #otvara fajl na kojem se nalaze sve leme imenice za koje ce program da proveri jesu li prefigirane; poredjane po frekventnosti
-    with open('glagoli/glagoli.txt', 'r', encoding = 'utf-8') as fajl_sa_glagolima: #otvara fajl sa lemama glagola
+with open('reizlaz2.txt', 'r', encoding = 'utf-8') as korpus: #otvara fajl na kojem se nalaze sve leme imenice za koje ce program da proveri jesu li prefigirane; poredjane po frekventnosti
+    with open('glagoli.txt', 'r', encoding = 'utf-8') as fajl_sa_glagolima: #otvara fajl sa lemama glagola
         recnik = [red[:-1] for red in korpus.readlines()] #od fajla sa imenicama pravi listu
         listaglagola=[red[:-1] for red in fajl_sa_glagolima.readlines()]
         listaprefiksa = ['protiv', 'raza', 'polu', 'pred', 'pret', 'samo', 'mimo', 'među', 'bez', 'bes', 'van', 'pod', 'pot', 'pra', 'pre', 'pri', 'raz', 'ras', 'raš', 'nad', 'nat', 'nuz', 'nus', 'oda', 'iza', 'po', 'do', 'iz', 'is', 'iž', 'iš', 'uz', 'us', 'na', 'ne', 'su', 'sa', 'od', 'za', 'ot', 'ob', 'op', 'o', 'u', 's', 'z']
