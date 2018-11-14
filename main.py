@@ -16,22 +16,6 @@ if __name__ == '__main__':
 	with open('reizlaz2.txt', 'r', encoding = 'utf-8') as korpus:
 		recnik = [red[:-1] for red in korpus.readlines()]
 
-    
-	with open('uslov1.txt', 'w', encoding = 'utf-8') as izlaz_1, open('uslov3.txt', 'w', encoding = 'utf-8') as izlaz_3, open('uslov32.txt', 'w', encoding = 'utf-8') as izlaz_32, open('uslov31.txt', 'w', encoding='utf-8') as izlaz_31, open('uslov33.txt', 'w', encoding='utf-8') as izlaz_33:
-		for rec in recnik:
-			try:
-				uslov, prefiks, sufiks, potencijalni_glagol = prefiksator(rec, listaprefiksa, recnik, listasufiksa, listainfinitiva, listaglagola)
-				if uslov == 1:
-				    izlaz_1.write(rec + ' : ' + prefiks + '\n')
-				elif uslov == 2:
-				    izlaz_2.write(rec + ' : ' + prefiks + ' (' + prefiks2 + ')\n')
-				elif uslov == 3:
-				    izlaz_3.write(rec + ' : ' + prefiks + ' : ' + sufiks + '\n')
-				elif uslov == 33:
-				    izlaz_33.write(rec + ' : ' + prefiks + ' : ' + sufiks + ' (' + potencijalni_glagol + ')\n')
-				elif uslov ==32:
-				    izlaz_32.write(rec + ' : ' + prefiks + ' : ' + sufiks + ' (' + potencijalni_glagol + ')\n')
-				elif uslov ==31:
-				    izlaz_31.write(rec + ' : ' + prefiks + ' : ' + sufiks + ' (' + potencijalni_glagol + ')\n')
-			except:
-				pass
+
+	for rec in recnik:
+		prefiksator(rec, listaprefiksa, recnik, listasufiksa, listainfinitiva, listaglagola)
