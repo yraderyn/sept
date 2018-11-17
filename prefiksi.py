@@ -73,7 +73,7 @@ def prefiksator(rec, listaprefiksa, recnik, listasufiksa, listainfinitiva, lista
             uslov = prvi_uslov(rec, prefiks, recnik)
 
             if uslov == 1:
-                print('naso1')
+                print('nasao 1')
                 with open('uslov1.txt', 'a+', encoding = 'utf-8') as izlaz_1:
                     izlaz_1.write(rec + ' : ' + prefiks + '\n')
                     break
@@ -82,7 +82,7 @@ def prefiksator(rec, listaprefiksa, recnik, listasufiksa, listainfinitiva, lista
                 uslov = drugi_uslov(prefiks, rec, listaprefiksa, recnik)
 
                 if uslov == 2:
-                    print('naso2')
+                    print('nasao 2')
                     with open('uslov2.txt', 'a+', encoding = 'utf-8') as izlaz_2:
                         izlaz_2.write(rec + ' : ' + prefiks + ' (' + prefiks2 + ')\n')
                         break
@@ -111,7 +111,7 @@ def prefiksator(rec, listaprefiksa, recnik, listasufiksa, listainfinitiva, lista
                                     if potencijalni_glagol[len(prefiks):] in listaglagola: 
                                         uslov = 31
                                         if uslov == 31:
-                                            print('naso31')
+                                            print('nasao 31')
                                             with open('uslov31.txt', 'a+', encoding = 'utf-8') as izlaz_31:
                                                 izlaz_31.write(rec + ' : ' + prefiks + ' : ' + sufiks + ' (' + potencijalni_glagol + ')\n')
                                                 break
@@ -120,7 +120,7 @@ def prefiksator(rec, listaprefiksa, recnik, listasufiksa, listainfinitiva, lista
                                             if prefiks2 + potencijalni_glagol[len(prefiks):] in listaglagola and prefiks != prefiks2 and len(potencijalni_glagol[len(prefiks):]) > 1 and len(potencijalni_glagol[len(prefiks2):]) > 1 and alomorf(prefiks2, rec[len(prefiks2):]) == True:  # treci uslov u if petlji: ne zelimo da se prefiks menja samim sobom. Za cetvrti i peti uslov pogledati liniju 49
                                                 uslov = 32
                                                 if uslov == 32:
-                                                    print('naso32')
+                                                    print('nasao 32')
                                                     with open('uslov32.txt', 'a+', encoding = 'utf-8') as izlaz_32:
                                                         izlaz_32.write(rec + ' : ' + prefiks + ' : ' + sufiks + ' (' + potencijalni_glagol + ')\n')
                                                         break       
@@ -141,7 +141,7 @@ def prefiksator(rec, listaprefiksa, recnik, listasufiksa, listainfinitiva, lista
                                         if potencijalni_glagol in listaglagola:
                                             uslov = 33
                                             if uslov == 33:
-                                                print('naso33')
+                                                print('nasao 33')
                                                 with open('uslov33.txt', 'a+', encoding = 'utf-8') as izlaz_33:
                                                     izlaz_33.write(rec + ' : ' + prefiks + ' : ' + sufiks + ' (' + potencijalni_glagol + ')\n')
                                                     break
@@ -183,14 +183,14 @@ def prefiksator(rec, listaprefiksa, recnik, listasufiksa, listainfinitiva, lista
                                                 if potencijalni_glagol in listaglagola:
                                                     uslov = 33
                                                     if uslov == 33:
-                                                        print('naso33')
+                                                        print('nasao 33')
                                                         with open('uslov33.txt', 'a+', encoding = 'utf-8') as izlaz_33:
                                                             izlaz_33.write(rec + ' : ' + prefiks + ' : ' + sufiks + ' (' + potencijalni_glagol + ')\n')
                                                             break
                                                         
                     if uslov == 0:
                         uslov = 3
-                        print('naso3')
+                        print('nasao 3')
                         with open('uslov3.txt', 'a+', encoding = 'utf-8') as izlaz_3:
                             izlaz_3.write(rec + ' : ' + prefiks + ' : ' + sufiks + '\n')
                             break
